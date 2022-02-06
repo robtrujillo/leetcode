@@ -19,6 +19,8 @@ class Solution {
                 continue;
             } else if((i+2) >= nums.length || nums[i+2] < curr)  {
                 // there is nothing left we want to check! 
+                // or, the next value is less than, which means unsorted, so we
+                // prob moved a dupe there which means end of significant array
                 return nums.length - currDupeCount;
             } else {
                 // found a dupe! any consecutive dupes from here must be 
@@ -29,10 +31,13 @@ class Solution {
                 int numDupes = countConsecutiveDupes(nums, curr, startingIndexToCheck, end);
                 // step 2: shift this chunk of dupes to end
                 if(numDupes == 0) {
+                    // there were no other dupes, i.e. [1,1] and not [1,1,1]
                     continue;
                 } else {
+                    // add the new dupes found
                     currDupeCount += numDupes;
-                    shiftArrayChunkToEnd(nums, startingIndexToCheck, numDupes);
+                    // shift everything after dupe chunk
+                    removeDupeChunkAndShift(nums, startingIndexToCheck, numDupes);
                 }
             }
         }
@@ -43,7 +48,7 @@ class Solution {
     // @param nums : array to use
     // @param startingShiftIndex : which location needs to be shifted
     // @param lengthToShift : how many need to be shifted 
-    private void shiftArrayChunkToEnd(int[] nums, int startingShiftIndex, int lengthToShift) {
+    private void removeDupeChunkAndShift(int[] nums, int startingShiftIndex, int lengthToShift) {
         for(int i = startingShiftIndex; i+lengthToShift < nums.length; i++) {
             nums[i] = nums[i+lengthToShift];
         }
