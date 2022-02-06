@@ -2,7 +2,7 @@ class Solution {
     public int removeDuplicates(int[] nums) {
         
         // edge cases for sizes 0,1,2
-        if(nums.length < 2) {
+        if(nums.length <= 2) {
             return nums.length;
         }
         
