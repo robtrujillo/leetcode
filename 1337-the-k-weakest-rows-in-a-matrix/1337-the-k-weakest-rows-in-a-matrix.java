@@ -29,6 +29,8 @@ class Solution {
             return 1;
         });
         
+        // setup return array of k weakest
+        // mat is sorted in ascending order so get originalIndexes of first k elements
         int[] ret = new int[k];
         for(int i = 0; i < k; i++) {
             ret[i] = originalIndexes.get(mat[i]);
