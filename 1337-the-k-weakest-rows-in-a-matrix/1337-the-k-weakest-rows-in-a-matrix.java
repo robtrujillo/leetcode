@@ -25,7 +25,7 @@ class Solution {
                     continue;
                 }
             }
-            // they are equal in soliders, so rowTwo is greater by default
+            // they are equal in # of soliders, so rowTwo is greater by default
             return 1;
         });
         
